@@ -9,12 +9,14 @@ import {
 import Contact from './routes/Contact';
 import Layout from './routes/Layout';
 import Home from './routes/Home';
+import {store} from './store';
+import {Provider} from 'react-redux'
 
 function App() {
     return(
         <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Layout username="hank"/>}>
+            <Route path="/" element={<Layout/>}>
                 <Route  index element={<Home/>}/>
                 <Route path="contact" element={<Contact/>} />
             </Route>
@@ -30,5 +32,7 @@ const root = createRoot(domNode);
 
 
 root.render(
+    <Provider store={store}>
        <App/>
+    </Provider>
 );
