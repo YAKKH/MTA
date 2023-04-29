@@ -11,32 +11,33 @@ const client = new pg.Client({ connectionString });
 client.connect();
 
 const pgController = {
-  postListItem: async (req, res, next) => {
-    const { listItem } = req.body;
+  postMessage: async (req, res, next) => { // inserting a new message in the db
+    const { message, trainID, userID } = req.body;
     const response = await client.query(
-      'INSERT INTO example_table (date, message)VALUES ($1, $2)',
-      [Date.now(), listItem]
+      'INSERT INTO message (content, train_user_id, train_id) VALUES ($1, $2, $3)',
+      [message, userID, trainID]
     );
     console.log(response);
+    console.log('hello');
     return next();
   },
 
-  getList: async (req, res, next) => {
-    const response = await client.query('SELECT * FROM list');
+  getTrain: async (req, res, next) => { // pulling one train from database and its messages
+    const response = await client.query('SELECT * FROM message LEFT JOIN train ON message.train_id = train._id');
     res.locals.list = response;
     return next();
   },
 
-  updateList: async (req, res, next) => {
-    const id = req.params.id;
-    const { message } = req.body;
-    const response = await client.query(
-      'UPDATE example_table SET message = "Hello, everyone!" WHERE id = 1;',
-      [message, id]
-    );
-    console.log(response);
-    return next();
-  },
+  // updateList: async (req, res, next) => {
+  //   const id = req.params.id;
+  //   const { message } = req.body;
+  //   const response = await client.query(
+  //     'UPDATE example_table SET message = "Hello, everyone!" WHERE id = 1;',
+  //     [message, id]
+  //   );
+  //   console.log(response);
+  //   return next();
+  // },
 
   deleteListItem: async (req, res, next) => {
     const id = req.params.id;
