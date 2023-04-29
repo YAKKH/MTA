@@ -17,6 +17,7 @@ const config = {
 	entry: './src/index.jsx',
 	output: {
 		path: path.resolve(__dirname, 'public'),
+		publicPath: "/",
 	},
 	devServer: {
 		open: true,
@@ -26,6 +27,7 @@ const config = {
 		proxy: {
 			'/': 'http://localhost:3000',
 		},
+		historyApiFallback: true,
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -44,7 +46,7 @@ const config = {
 					loader: 'babel-loader',
 					options: {
 						presets: [
-							['@babel/preset-env', { targets: 'defaults' }],
+							[ '@babel/preset-env', { targets: 'defaults' } ],
 							'@babel/preset-react',
 						],
 					},
@@ -52,11 +54,11 @@ const config = {
 			},
 			{
 				test: /\.s[ac]ss$/i,
-				use: [stylesHandler, 'css-loader', 'postcss-loader', 'sass-loader'],
+				use: [ stylesHandler, 'css-loader', 'postcss-loader', 'sass-loader' ],
 			},
 			{
 				test: /\.css$/i,
-				use: [stylesHandler, 'css-loader', 'postcss-loader'],
+				use: [ stylesHandler, 'css-loader', 'postcss-loader' ],
 			},
 			{
 				test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
@@ -67,7 +69,7 @@ const config = {
 			// Learn more about loaders from https://webpack.js.org/loaders/
 		],
 	},
-	resolve: { extensions: ['.js', '.jsx'] },
+	resolve: { extensions: [ '.js', '.jsx' ] },
 };
 
 module.exports = () => {
