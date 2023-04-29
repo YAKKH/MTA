@@ -1,7 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import usernameReducer from "./features/username/usernameSlice"
+import usernameReducer from "./features/username/usernameSlice";
+import isSentReducer from "./features/isSent/isSentSlice"
 export const store = configureStore({
     reducer: {
-        username: usernameReducer
+        username: usernameReducer,
+        isSent: isSentReducer,
     },
 })
