@@ -6,7 +6,7 @@ import {
     Route,
     Link
 } from 'react-router-dom';
-import SignIn from './routes/SignIn';
+import Contact from './routes/Contact';
 import Layout from './routes/Layout';
 import Home from './routes/Home';
 
@@ -14,9 +14,9 @@ function App() {
     return(
         <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Layout/>}>
+            <Route path="/" element={<Layout username="hank"/>}>
                 <Route  index element={<Home/>}/>
-                <Route path="signin" element={<SignIn/>} />
+                <Route path="contact" element={<Contact/>} />
             </Route>
         </Routes>
         </BrowserRouter>
