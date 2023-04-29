@@ -4,7 +4,8 @@ import {Outlet} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { updateName } from '../features/username/usernameSlice';
 import { isSentSlice, updateSendStatus } from '../features/isSent/isSentSlice';
-
+import MainContainer from '../components/MainContainer';
+import Navbar from '../components/Navbar';
 
 export default function Layout(props) {
     const currentUserName = useSelector((state)=> state.username.username);
@@ -18,6 +19,9 @@ export default function Layout(props) {
     console.log(currentUserName)
   return (
     <div>
+        <Navbar />
+      
+        <MainContainer/>
             <button
           aria-label="Update name"
           onClick={() => {dispatch(updateName('ken'))
@@ -30,6 +34,7 @@ export default function Layout(props) {
         }}
         > IS SENT BUTTON 
         </button>  
+       
     <Outlet/>
     </div>
     

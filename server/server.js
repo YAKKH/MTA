@@ -18,8 +18,9 @@ app.use('/localhost:3000', express.static(path.join(__dirname, '../public')));
 app.get('/', pgController.getTrain, (req, res) => {
 	return res.status(200).send(res.locals.list.rows);
 });
-
 app.post('/post', pgController.postMessage, pgController.getTrain, (req, res) => {
+	console.log("Request: ", req.body)
+
 	return res.status(200).send(res.locals.list.rows);
 });
 

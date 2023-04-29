@@ -13,11 +13,11 @@ client.connect();
 const pgController = {
   postMessage: async (req, res, next) => { // inserting a new message in the db
     const { message, trainID, userID } = req.body;
-    const response = await client.query(
+    const postQuery = await client.query(
       'INSERT INTO message (content, train_user_id, train_id) VALUES ($1, $2, $3)',
-      [message, userID, trainID]
+      [ message, userID, trainID ]
     );
-    console.log(response);
+    console.log(postQuery);
     console.log('hello');
     return next();
   },
@@ -43,7 +43,7 @@ const pgController = {
     const id = req.params.id;
     const response = await client.query(
       'DELETE FROM example_table WHERE id = 1;',
-      [id]
+      [ id ]
     );
     console.log(response);
     return next();
