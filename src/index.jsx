@@ -11,6 +11,8 @@ import Layout from './routes/Layout';
 import Home from './routes/Home';
 import {store} from './store';
 import {Provider} from 'react-redux'
+import Login from './routes/Login';
+import './components/input.css'
 
 function App() {
     return(
@@ -19,6 +21,9 @@ function App() {
             <Route path="/" element={<Layout/>}>
                 <Route  index element={<Home/>}/>
                 <Route path="contact" element={<Contact/>} />
+            </Route>
+            <Route className="white" path="/login">
+                <Route index element={<Login />}/>
             </Route>
         </Routes>
         </BrowserRouter>

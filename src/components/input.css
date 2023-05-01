@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+base , .login{
+display: flex;
+flex-direction: column;
+color:#F6F1F1;
+font-family: 'IBM Plex Sans', sans-serif;
+border-radius: 7px;
+align-items: center;
+justify-content: center;
+font-weight: bold;
+}
+
+input, select, .login {
+  border-radius: 3px;
+  margin: 1px;
+}
+
+label, button, h1 , .login{
+  color:rgb(245, 238, 238);
+  border-radius: 7px;
+  background-color: #2f373b;
+  margin: 2vh;
+  padding: 1vh;
+  box-shadow: rgba(118, 115, 115, 0.35) 0px 5px 15px;
+  font-weight: bold;
+}
+
+body, .login {
+background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(46, 46, 56) 35%, rgb(16, 16, 16) 100%);
+}
+/* secondary color: #16191E */
+/* tertiary color: #4f4e4f */
+
+li, .login{
+  list-style: none;
+  color: white;
+  border: 1px solid #cb3638;
+  margin: 2rem;
+  border-radius: 12px;
+  font-style: italic;
+  padding: 1vw;
+}
+
+.round-logo {
+  background-color: #cb3638;
+  width: 20vw;
+  height: 20vw;
+  border-radius: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4em;
+}
+
+.center-nav , .login{
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  color: #16191E;
+}
+
+.submit-btn {
+  color: rgb(53, 175, 53);
+}
+
+.submit-btn:hover {
+  border: 1px solid rgb(53, 175, 53);
+  box-sizing: border-box;
+}

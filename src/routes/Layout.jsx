@@ -19,7 +19,7 @@ export default function Layout(props) {
     console.log(currentUserName)
   return (
     <div>
-        <h1>Choo Choo Chat</h1>
+        <h1>MTA Chat</h1>
         <Navbar />
       
         <MainContainer/>

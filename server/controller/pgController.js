@@ -23,10 +23,22 @@ const pgController = {
     return next();
   },
 
-  getTrain: async (req, res, next) => { // pulling one train from database and its messages
-    const response = await client.query('SELECT * FROM message LEFT JOIN train ON message.linename = train.linename;');
-    // console.log("Response Rows0: ", response.rows[ 0 ])
-    // Array of objects 
+  // getTrain: async (req, res, next) => { // pulling one train from database and its messages
+  //   const response = await client.query('SELECT * FROM message LEFT JOIN train ON message.linename = train.linename;');
+  //   // console.log("Response Rows0: ", response.rows[ 0 ])
+  //   // Array of objects 
+  //   res.locals.list = response.rows;
+  //   return next();
+  // },
+  getTrain: async (req, res, next) => {
+    // pulling one train from database and its messages
+    const trainline = req.body.linename;
+    const response = await client.query(
+      'SELECT * FROM message WHERE linename = $1;',
+      [ trainline ]
+    );
+    // console.log(“Response Rows0: “, response.rows[ 0 ])
+    // Array of objects
     res.locals.list = response.rows;
     return next();
   },
