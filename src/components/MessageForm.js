@@ -7,6 +7,22 @@ export default function MessageForm() {
     const [ userID, setUserID ] = useState("");
     const [ allMessages, setAllMessages ] = useState([])
 
+    const fetchMessages = async function () {
+        try {
+            const response = await fetch("http://localhost:3000", {
+                method: "GET",
+                cors: 'no-cors'
+            }).then(data => data.json())
+                .then(data => setAllMessages(data))
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useState(() => {
+        fetchMessages()
+    })
+
 
 
     const handleSubmit = async function (e) {
