@@ -19,6 +19,7 @@ export default function Layout(props) {
     console.log(currentUserName)
   return (
     <div>
+        <h1>Choo Choo Chat</h1>
         <Navbar />
       
         <MainContainer/>
@@ -26,13 +27,13 @@ export default function Layout(props) {
           aria-label="Update name"
           onClick={() => {dispatch(updateName('ken'))
             console.log(currentUserName)
-        }}>  CLICK ME</button>
+        }}>  UPDATE NAME</button>
           <button
           aria-label="Is Sent "
           onClick={() => {dispatch(updateSendStatus())
             console.log(sendStatus)
         }}
-        > IS SENT BUTTON 
+        > GRAB MESSAGES
         </button>  
        
     <Outlet/>

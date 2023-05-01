@@ -16,12 +16,13 @@ app.use('/localhost:3000', express.static(path.join(__dirname, '../public')));
 // });
 
 app.get('/', pgController.getTrain, (req, res) => {
-	return res.status(200).send(res.locals.list.rows);
+	return res.status(200).send(res.locals.list);
 });
 app.post('/post', pgController.postMessage, pgController.getTrain, (req, res) => {
-	console.log("Request: ", req.body)
 
-	return res.status(200).send(res.locals.list.rows);
+	// console.log("RESPONSE: ", res)
+	// console.log(res.locals.list[ 0 ])
+	return res.status(200).json(res.locals.list);
 });
 
 // app.delete('/list/:id', pgController.deleteListItem, (req, res) => {

@@ -12,19 +12,22 @@ client.connect();
 
 const pgController = {
   postMessage: async (req, res, next) => { // inserting a new message in the db
-    const { message, trainID, userID } = req.body;
+    const { content, linename, userID } = req.body;
+
     const postQuery = await client.query(
-      'INSERT INTO message (content, train_user_id, train_id) VALUES ($1, $2, $3)',
-      [ message, userID, trainID ]
+      'INSERT INTO message (content, train_user_id, linename) VALUES ($1, $2, $3);',
+      [ content, userID, linename ]
     );
-    console.log(postQuery);
-    console.log('hello');
+    // console.log(postQuery);
+
     return next();
   },
 
   getTrain: async (req, res, next) => { // pulling one train from database and its messages
-    const response = await client.query('SELECT * FROM message LEFT JOIN train ON message.train_id = train._id');
-    res.locals.list = response;
+    const response = await client.query('SELECT * FROM message LEFT JOIN train ON message.linename = train.linename;');
+    // console.log("Response Rows0: ", response.rows[ 0 ])
+    // Array of objects 
+    res.locals.list = response.rows;
     return next();
   },
 

@@ -1,29 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function MessageForm() {
 
-    const [ message, setMessage ] = useState("");
-    const [ trainID, setTrainID ] = useState(1)
-    const [ userID, setUserID ] = useState("johnny")
+    const [ content, setContent ] = useState("");
+    const [ linename, setLinename ] = useState("")
+    const [ userID, setUserID ] = useState("");
+    const [ allMessages, setAllMessages ] = useState([])
 
 
 
     const handleSubmit = async function (e) {
         e.preventDefault()
-        const newMsg = { message, trainID, userID }
-        console.log("MESSAGE: ", message)
+        const newMsg = { content, linename, userID }
+        console.log("MESSAGE: ", content)
         try {
-            const request = await fetch('/post', {
+            const response = await fetch('/post', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(newMsg)
-            })
-            console.log("REQUEST: ", response)
+            }).then(data => data.json())
+                .then(data => setAllMessages(data))
+
+
+
+
         } catch (error) {
             console.log(error)
         }
+    }
+    console.log(allMessages)
+    const mapped = [];
+    for (let msg of allMessages) {
+        mapped.push(
+            <li>
+                <p>Content: {msg.content}</p>
+                <p>Author: {msg.train_user_id}</p>
+                <p>Date: {msg.created_at}</p>
+                <p>Train: {msg.linename}</p>
+            </li>
+        )
     }
 
     return (
@@ -31,12 +48,16 @@ export default function MessageForm() {
             <h1>Add a message: </h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="">Message</label>
-                <input onChange={(e) => { setMessage(e.target.value) }} type="text" />
+                <input onChange={(e) => { setContent(e.target.value) }} type="text" />
 
+                <label htmlFor="">LINENAME: </label>
+                <input onChange={(e) => { setLinename(e.target.value) }} type="text" />
 
-
+                <label htmlFor="">User ID: </label>
+                <input onChange={(e) => { setUserID(e.target.value) }} type="text" />
                 <button>Click me xD</button>
             </form>
+            {mapped}
         </div>
     )
 }
