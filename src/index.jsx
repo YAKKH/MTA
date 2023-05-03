@@ -1,32 +1,27 @@
-import { createRoot } from 'react-dom/client';
 import React from 'react';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link
-} from 'react-router-dom';
-import Contact from './routes/Contact';
-import Layout from './routes/Layout';
-import Home from './routes/Home';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { store } from './store';
 import { Provider } from 'react-redux';
+import Layout from './routes/Layout';
 import Login from './routes/Login';
+import Signup from './routes/Signup';
+import Navbar from './components/Navbar';
 import './components/input.css';
 
-function App() {
+function App () {
   return (
+    <div>
         <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Layout/>}>
-                <Route index element={<Home/>}/>
-                <Route path="contact" element={<Contact/>} />
-            </Route>
-            <Route className="white" path="/login">
-                <Route index element={<Login />}/>
+            <Route path="/" element={<Navbar />}>
+                <Route index element={<Layout />}/>
+                <Route path="/login" element={<Login />}/>
+                <Route path="/signup" element={<Signup />} />
             </Route>
         </Routes>
         </BrowserRouter>
+    </div>
   );
 }
 
