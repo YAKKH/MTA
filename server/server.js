@@ -8,8 +8,15 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 const PORT = 3000;
+const authRouter = require('./auth');
+
+const session = require('express-session')
+
+
+
 
 app.use(express.json());
+app.use(authRouter);
 
 // app.get('/', pgController.getList, (req, res) => {
 // 	return res.status(200).json({ message: 'hello' });
@@ -19,8 +26,8 @@ app.use(express.json());
 // 	return res.status(200).send(res.locals.list);
 // });
 // app.post('/post', pgController.postMessage, pgController.getTrain, (req, res) => {
-	// console.log("RESPONSE: ", res)
-	// console.log(res.locals.list[ 0 ])
+// console.log("RESPONSE: ", res)
+// console.log(res.locals.list[ 0 ])
 // 	return res.status(200).json(res.locals.list);
 // });
 
@@ -39,6 +46,7 @@ app.get('/getTrains', testController.findTrains, (req, res) => {
 app.get('/getComplaints', testController.findComplaints, (req, res) => {
 	return res.status(200).json(res.locals.complaints);
 });
+
 
 // app.delete('/list/:id', pgController.deleteListItem, (req, res) => {
 // 	return res.status(200).json({ recieved: true });
