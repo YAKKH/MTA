@@ -8,7 +8,7 @@ import Navbar from '../components/Navbar';
 
 export default function Layout(props) {
   const currentUserName = useSelector((state)=> state.username.username);
-  const sendStatus = useSelector((state)=> state.isSent.isSent)
+  const sendStatus = useSelector((state) => state.isSent.isSent);
 
   const dispatch = useDispatch();
 

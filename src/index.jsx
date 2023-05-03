@@ -10,17 +10,19 @@ import Navbar from './components/Navbar';
 import './components/input.css';
 
 function App () {
+
   return (
     <div>
         <BrowserRouter>
         <Routes>
             <Route path="/" element={<Navbar />}>
-                <Route index element={<Layout />}/>
+                <Route path="/layout"element={<Layout />}/>
                 <Route path="/login" element={<Login />}/>
                 <Route path="/signup" element={<Signup />} />
             </Route>
         </Routes>
         </BrowserRouter>
+
     </div>
   );
 }

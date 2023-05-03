@@ -1,7 +1,7 @@
-import React from 'react'
-import MessageForm from './MessageForm'
-import Feed from './Feed'
-export default function MainContainer() {
+import React from 'react';
+import MessageForm from './MessageForm';
+import Feed from './Feed';
+export default function MainContainer () {
     return (
         <div>
             <Feed />

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../features/account/accountSlice';
 
 export default function Login () {
+  const navigate = useNavigate()
   const [currUser, setUser] = useState('');
   const [currPassword, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -22,9 +23,11 @@ export default function Login () {
       .then(data => {
         if (data.isLoggedIn) {
           dispatch(login({
+
             username: data.username,
             _id: data._id
           }));
+          navigate('/');
         } else {
           alert('you fail');
         }
@@ -41,7 +44,7 @@ export default function Login () {
     <input placeholder="Enter your username" value={currUser} onChange={e => setUser(e.target.value)}/>
     <input placeholder="Enter your password" value={currPassword} onChange={e => setPassword(e.target.value)}/>
     <button onClick={sendLogin}>Login</button>
-
+    
       <Link to="/">Login to HOME PAGE</Link>
     </div>
   );
