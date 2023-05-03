@@ -27,7 +27,6 @@ export default function Login () {
         }
       });
   }
-  console.log('CURR USER: ', currUser, 'CURRPASSWORD : ', currPassword);
   return (
     <div className='login'>
     {/* <form action="">
