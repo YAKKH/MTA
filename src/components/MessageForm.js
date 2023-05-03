@@ -18,11 +18,10 @@ export default function MessageForm() {
         }
     }
 
+
     useState(() => {
         fetchMessages()
-    }, [])
-
-
+    })
 
     const handleSubmit = async function (e) {
         e.preventDefault()
