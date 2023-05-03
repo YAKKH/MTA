@@ -43,6 +43,6 @@ complaintController.createComplaint = async (req, res, next) => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 module.exports = complaintController;

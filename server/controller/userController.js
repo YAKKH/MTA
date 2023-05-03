@@ -43,7 +43,6 @@ userController.signup = async (req, res, next) => {
   }
 };
 
-
 // testController.createUser = async (req, res, next) => {
 //   try {
 //     const user = await prisma.user.create({
