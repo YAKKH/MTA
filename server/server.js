@@ -2,7 +2,9 @@
 /* eslint-disable no-tabs */
 const express = require('express');
 // const pgController = require('./controller/pgController');
-const testController = require('./controller/testController');
+const userController = require('./controller/userController');
+const trainController = require('./controller/trainController');
+const complaintController = require('./controller/complaintController');
 const path = require('path');
 const cors = require('cors');
 const app = express();
@@ -24,21 +26,19 @@ app.use(express.json());
 // 	return res.status(200).json(res.locals.list);
 // });
 
-app.get('/test', testController.createUser, (req, res) => {
-	return res.sendStatus(200);
+app.post('/login', userController.login, (req, res) => {
+	return res.status(200).json(res.locals.user);
 });
 
-app.get('/getUsers', testController.findUsers, (req, res) => {
-	return res.status(200).json(res.locals.users);
+app.post('/signup', userController.signup, userController.login, (req, res) => {
+	return res.status(200).json(res.locals.user);
 });
 
-app.get('/getTrains', testController.findTrains, (req, res) => {
-	return res.status(200).json(res.locals.trains);
-});
-
-app.get('/getComplaints', testController.findComplaints, (req, res) => {
+app.get('/complaints/:train', trainController.findTrain, complaintController.findComplaints, (req, res) => {
 	return res.status(200).json(res.locals.complaints);
 });
+
+app.post('/complaints/:train', trainController.findTrain, )
 
 // app.delete('/list/:id', pgController.deleteListItem, (req, res) => {
 // 	return res.status(200).json({ recieved: true });
