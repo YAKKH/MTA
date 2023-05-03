@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config()
 const express = require('express');
 const cors = require('cors')
 const app = express()
@@ -27,9 +28,9 @@ router.use(passport.session())
     Callback URL -> URL Endpoint the  user is sent back to by Github Auth. Path must match a defined route.
 */
 passport.use(new GitHubStrategy({
-  clientID: "bd29e6b4c883d71a7124",
-  clientSecret: "933ebfd461a09e1ab1fcab7e7f31ad07e6e2a1c0",
-  callbackURL: "http://localhost:8080/authcallback"
+  clientID: process.env.clientID,
+  clientSecret: process.env.clientSecret,
+  callbackURL: process.env.callbackURL
 },
   function (accessToken, refreshToken, profile, done) {
     /* Profile -  is an object with all the information Github is willing to share with our application. */
