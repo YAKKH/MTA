@@ -6,6 +6,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -33,7 +34,8 @@ const config = {
 		new HtmlWebpackPlugin({
 			template: 'index.html',
 		}),
-		new MiniCssExtractPlugin({ filename: './input.css' })
+		new MiniCssExtractPlugin({ filename: './input.css' }),
+		new Dotenv()
 
 		// Add your plugins here
 		// Learn more about plugins from https://webpack.js.org/configuration/plugins/
@@ -47,7 +49,7 @@ const config = {
 					loader: 'babel-loader',
 					options: {
 						presets: [
-							[ '@babel/preset-env', { targets: 'defaults' } ],
+							['@babel/preset-env', { targets: 'defaults' }],
 							'@babel/preset-react',
 						],
 					},
@@ -55,11 +57,11 @@ const config = {
 			},
 			{
 				test: /\.s[ac]ss$/i,
-				use: [ MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader' ],
+				use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
 			},
 			{
 				test: /\.css$/i,
-				use: [ stylesHandler, 'css-loader', 'postcss-loader' ],
+				use: [stylesHandler, 'css-loader', 'postcss-loader'],
 			},
 			{
 				test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
@@ -70,7 +72,7 @@ const config = {
 			// Learn more about loaders from https://webpack.js.org/loaders/
 		],
 	},
-	resolve: { extensions: [ '.js', '.jsx' ] },
+	resolve: { extensions: ['.js', '.jsx'] },
 };
 
 module.exports = () => {

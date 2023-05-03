@@ -31,11 +31,11 @@ passport.use(new GitHubStrategy({
   clientSecret: process.env.clientSecret,
   callbackURL: process.env.callbackURL
 },
-function (accessToken, refreshToken, profile, done) {
-  /* Profile -  is an object with all the information Github is willing to share with our application. */
-  // console.log(profile);
-  return done(null, profile);
-}
+  function (accessToken, refreshToken, profile, done) {
+    /* Profile -  is an object with all the information Github is willing to share with our application. */
+    // console.log(profile);
+    return done(null, profile);
+  }
 ));
 
 /*
