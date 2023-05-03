@@ -8,10 +8,10 @@ export default function MainContainer() {
     // const username = useSelector((state) => state.account.username);
     const _id = useSelector((state) => state.account._id);
 
-    const [color, setColor] = useState('');
-    const [lineName, setLineName] = useState('');
-    const [message, setMessage] = useState('');
-    const [allMessages, setAllMessages] = useState([]);
+    const [ color, setColor ] = useState('');
+    const [ lineName, setLineName ] = useState('');
+    const [ message, setMessage ] = useState('');
+    const [ allMessages, setAllMessages ] = useState([]);
 
     const updateColor = function () {
         let color = 'white';
@@ -70,14 +70,15 @@ export default function MainContainer() {
         console.log('This is the line name we are getting msgs for', lineName);
         e.preventDefault();
         try {
+            setAllMessages([])
             let combinedData = [];
             // get complaints from backend
             const BEresponse = await fetch(`/complaints/${lineName}`, {
                 method: 'GET'
             });
             const data = await BEresponse.json();
-            combinedData = [...data];
-
+            combinedData = [ ...data ];
+            console.log("Combined Data: ", combinedData)
             // get and filter service messages from MTA API
             const APIresponse = await fetch('https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fsubway-alerts.json',
                 {
@@ -88,12 +89,12 @@ export default function MainContainer() {
                 });
             const APIdata = await APIresponse.json();
             for (let index = 0; index < APIdata.entity.length; index++) {
-                if (APIdata.entity[index].alert.description_text) {
+                if (APIdata.entity[ index ].alert.description_text) {
                     const regex = /(?<=\[)[a-zA-Z0-9]+(?=\])/;
-                    const text = APIdata.entity[index].alert.description_text.translation[0].text;
+                    const text = APIdata.entity[ index ].alert.description_text.translation[ 0 ].text;
                     const train = text.match(regex);
                     if (!train) continue;
-                    if (train[0] === lineName) {
+                    if (train[ 0 ] === lineName) {
                         combinedData.push({
                             message: text,
                             user: { username: 'MTA' }
@@ -111,6 +112,7 @@ export default function MainContainer() {
                 );
             };
             setAllMessages(totalMessages);
+
         } catch (err) {
             console.log(err);
         }
@@ -176,14 +178,14 @@ export default function MainContainer() {
                         </form>
                     </div>
                     {(isLoggedIn) ?
-                        [<div >
+                        [ <div >
                             <h1>{`Submit a Report for Train ${lineName}`}</h1>
                             <form onSubmit={submitMessage}>
                                 <label >Message: </label>
                                 <input id='textbox' value={`${message}`} onChange={(e) => { setMessage(e.target.value); }} type="text" />
                                 <button className={'submit-btn'}>Submit Report</button>
                             </form>
-                        </div>]
+                        </div> ]
                         : <div></div>
                     }
                 </div>

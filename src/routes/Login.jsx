@@ -44,7 +44,7 @@ export default function Login () {
     <input placeholder="Enter your username" value={currUser} onChange={e => setUser(e.target.value)}/>
     <input placeholder="Enter your password" value={currPassword} onChange={e => setPassword(e.target.value)}/>
     <button onClick={sendLogin}>Login</button>
-    
+    <a href="auth">Log In With Github</a>
       <Link to="/">Login to HOME PAGE</Link>
     </div>
   );
