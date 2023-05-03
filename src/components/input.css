@@ -70,7 +70,7 @@ li,
 .horizForms {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: left;
   min-width: 50%;
 }
