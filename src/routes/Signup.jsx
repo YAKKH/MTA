@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 export default function Signup() {
   const [currUser, setUser] = useState('');
   const [currPassword, setPassword] = useState('');
+  const dispatch = useDispatch();
   function sendInfo () {
     fetch('/signup', {
       method: 'POST',
