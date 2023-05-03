@@ -1,5 +1,4 @@
 import React from 'react'
-
 import {Outlet} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { updateName } from '../features/username/usernameSlice';
