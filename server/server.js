@@ -11,8 +11,6 @@ const PORT = 3000;
 
 app.use(express.json());
 
-app.use('/localhost:3000', express.static(path.join(__dirname, '../public')));
-
 // app.get('/', pgController.getList, (req, res) => {
 // 	return res.status(200).json({ message: 'hello' });
 // });
