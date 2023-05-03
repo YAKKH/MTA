@@ -54,6 +54,37 @@ li,
   padding: 1vw;
 }
 
+.mainContainerFlex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.centerLogo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 50%;
+}
+
+.horizForms {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  min-width: 50%;
+}
+
+#infoForm {
+  margin: 3vh;
+  padding: 1vh;
+}
+
+#complaintForm {
+  margin: 3vh;
+  padding: 1vh;
+}
+
 .round-logo {
   background-color: white;
   width: 20vw;
@@ -65,7 +96,6 @@ li,
   font-size: 6em;
 }
 
-.center-nav,
 .login {
   display: flex;
   justify-content: center;
@@ -77,11 +107,18 @@ input {
 
 .submit-btn {
   color: rgb(53, 175, 53);
+  border: 1px solid #2f373b;
+
 }
 
 .submit-btn:hover {
   border: 1px solid rgb(53, 175, 53);
   box-sizing: border-box;
+}
+
+#textbox {
+  height: 35px;
+  width: 40%;
 }
 
 a {
