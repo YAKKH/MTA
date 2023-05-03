@@ -7,16 +7,26 @@ const cors = require('cors')
 const app = express()
 app.use(cors())
 const PORT = 3000;
+const authRouter = require('./auth');
+
+const session = require('express-session')
+
+
+
 
 app.use(express.json());
+app.use(authRouter);
 
-app.use('/localhost:3000', express.static(path.join(__dirname, '../public')));
+
+// app.use('/localhost:3000', express.static(path.join(__dirname, '../public')));
 
 // app.get('/', pgController.getList, (req, res) => {
 // 	return res.status(200).json({ message: 'hello' });
 // });
 
+
 app.get('/', pgController.getTrain, (req, res) => {
+	console.log("USER: ", req.user)
 	return res.status(200).send(res.locals.list);
 });
 app.post('/post', pgController.postMessage, pgController.getTrain, (req, res) => {
@@ -25,6 +35,7 @@ app.post('/post', pgController.postMessage, pgController.getTrain, (req, res) =>
 	// console.log(res.locals.list[ 0 ])
 	return res.status(200).json(res.locals.list);
 });
+
 
 // app.delete('/list/:id', pgController.deleteListItem, (req, res) => {
 // 	return res.status(200).json({ recieved: true });

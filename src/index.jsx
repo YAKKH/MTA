@@ -33,9 +33,6 @@ function App() {
 
 const domNode = document.getElementById('root');
 const root = createRoot(domNode);
-
-
-
 root.render(
     <Provider store={store}>
        <App/>
