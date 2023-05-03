@@ -21,13 +21,15 @@ export default function Login () {
       .then(res => res.json())
       .then(data => {
         if (data.isLoggedIn) {
-          dispatch({ username: data.username, _id: data._id });
+          dispatch(login({
+            username: data.username,
+            _id: data._id
+          }));
         } else {
           alert('you fail');
         }
       });
   }
-  console.log('CURR USER: ', currUser, 'CURRPASSWORD : ', currPassword);
   return (
     <div className='login'>
     {/* <form action="">
