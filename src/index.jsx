@@ -9,7 +9,7 @@ import Signup from './routes/Signup';
 import Navbar from './components/Navbar';
 import './components/input.css';
 
-function App () {
+export default function App () {
   return (
     <div>
         <BrowserRouter>

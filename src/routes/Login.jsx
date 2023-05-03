@@ -43,6 +43,7 @@ export default function Login () {
     <button onClick={sendLogin}>Login</button>
 
       <Link to="/">Login to HOME PAGE</Link>
+      <a href="auth">Log In With Github</a>
     </div>
   );
 }

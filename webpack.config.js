@@ -50,6 +50,7 @@ const config = {
 							[ '@babel/preset-env', { targets: 'defaults' } ],
 							'@babel/preset-react',
 						],
+						plugins: [ '@babel/plugin-transform-runtime', '@babel/transform-async-to-generator' ]
 					},
 				},
 			},
