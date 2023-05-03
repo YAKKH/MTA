@@ -73,3 +73,7 @@ input {
   border: 1px solid rgb(53, 175, 53);
   box-sizing: border-box;
 }
+
+a{
+  color: white;
+}

@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from 'react';
 
 export default function MessageForm() {
-  const [ content, setContent ] = useState("");
-  const [ linename, setLinename ] = useState("m")
-  const [ userID, setUserID ] = useState("");
-  const [ allMessages, setAllMessages ] = useState([])
 
-  const fetchMessages = async function () {
-    try {
-      const response = await fetch("http://localhost:3000", {
-        method: "GET",
-        cors: 'no-cors'
-      }).then(data => data.json())
-        .then(data => setAllMessages(data));
-    } catch (err) {
-      console.log(err)
+    const [ content, setContent ] = useState("");
+    const [ linename, setLinename ] = useState("m")
+    const [ userID, setUserID ] = useState("");
+    const [ allMessages, setAllMessages ] = useState([])
+
+    const fetchMessages = async function () {
+        try {
+            const response = await fetch("/", {
+                method: "GET",
+            }).then(data => data.json())
+                .then(data => setAllMessages(data))
+        } catch (err) {
+            console.log(err)
+        }
     }
-  }
 
-  useState(() => {
-    fetchMessages()
-  })
+
+    useState(() => {
+        fetchMessages()
+    })
 
     const handleSubmit = async function (e) {
         e.preventDefault()
