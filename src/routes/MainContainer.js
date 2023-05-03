@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable indent */
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -65,7 +66,9 @@ export default function MainContainer() {
         updateColor();
     });
 
-    const fetchMessages = async function () {
+    const fetchMessages = async function (e) {
+        console.log('This is the line name we are getting msgs for', lineName);
+        e.preventDefault();
         try {
             let combinedData = [];
             // get complaints from backend
@@ -84,15 +87,37 @@ export default function MainContainer() {
                     }
                 });
             const APIdata = await APIresponse.json();
-            console.log(data.entity[20].alert.description_text.translation[0]);
-
-            setAllMessages(combinedData);
+            for (let index = 0; index < APIdata.entity.length; index++) {
+                if (APIdata.entity[index].alert.description_text) {
+                    const regex = /(?<=\[)[a-zA-Z0-9]+(?=\])/;
+                    const text = APIdata.entity[index].alert.description_text.translation[0].text;
+                    const train = text.match(regex);
+                    if (!train) continue;
+                    if (train[0] === lineName) {
+                        combinedData.push({
+                            message: text,
+                            user: { username: 'MTA' }
+                        });
+                    }
+                }
+            }
+            const totalMessages = [];
+            for (const msg of combinedData) {
+                totalMessages.push(
+                    <div className='white' key={`${msg.message}`}>
+                        <p>Message: {msg.message}</p>
+                        <p>User: {msg.user.username}</p>
+                    </div>
+                );
+            };
+            setAllMessages(totalMessages);
         } catch (err) {
             console.log(err);
         }
     };
 
-    const submitMessage = async function () {
+    const submitMessage = async function (e) {
+        e.preventDefault();
         try {
             await fetch(`/complaints/${lineName}`, {
                 method: 'POST',
@@ -110,66 +135,60 @@ export default function MainContainer() {
         }
     };
 
-    const totalMessages = [];
-    for (const msg of allMessages) {
-        totalMessages.push(
-            <li>
-                <p>Complaint: {msg.message}</p>
-                <p>User: {msg.user.username}</p>
-            </li>
-        );
-    };
 
     console.log('These are the complaints received: ', allMessages);
     return (
-        <div className='mainContainerFlex'>
-            <div className='centerLogo'>
-                <h1 className={`round-logo ${color}`}>{`${lineName}`}</h1>
-            </div>
-            <div className='horizForms'>
-                <div className='InfoFormContainer'>
-                    <h1>{`${lineName} Train Updates`}</h1>
-                    <form onSubmit={fetchMessages}>
-                        <select onChange={(e) => { setLineName(e.target.value); }} name="" id='infoForm'>
-                            <option value=""></option>
-                            <option value="A">A</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                            <option value="B">B</option>
-                            <option value="E">E</option>
-                            <option value="F">F</option>
-                            <option value="G">G</option>
-                            <option value="J">J</option>
-                            <option value="L">L</option>
-                            <option value="M">M</option>
-                            <option value="N">N</option>
-                            <option value="Q">Q</option>
-                            <option value="R">R</option>
-                            <option value="W">W</option>
-                            <option value="Z">Z</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                        </select>
-                        <button className={'submit-btn'}>Get Train Info</button>
-                    </form>
+        <div>
+            <div className='mainContainerFlex'>
+                <div className='centerLogo'>
+                    <h1 className={`round-logo ${color}`}>{`${lineName}`}</h1>
                 </div>
-                {(isLoggedIn) ?
-                    [<div >
-                        <h1>{`Submit a Report for Train ${lineName}`}</h1>
-                        <form onSubmit={submitMessage}>
-                            <label >Message: </label>
-                            <input id='textbox' value={`${message}`} onChange={(e) => { setMessage(e.target.value); }} type="text" />
-                            <button className={'submit-btn'}>Submit Report</button>
+                <div className='horizForms'>
+                    <div className='InfoFormContainer'>
+                        <h1>{`${lineName} Train Updates`}</h1>
+                        <form onSubmit={fetchMessages}>
+                            <select onChange={(e) => { setLineName(e.target.value); }} name="" id='infoForm'>
+                                <option value=""></option>
+                                <option value="A">A</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="B">B</option>
+                                <option value="E">E</option>
+                                <option value="F">F</option>
+                                <option value="G">G</option>
+                                <option value="J">J</option>
+                                <option value="L">L</option>
+                                <option value="M">M</option>
+                                <option value="N">N</option>
+                                <option value="Q">Q</option>
+                                <option value="R">R</option>
+                                <option value="W">W</option>
+                                <option value="Z">Z</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                            </select>
+                            <button className={'submit-btn'}>Get Train Info</button>
                         </form>
-                    </div>] : <div></div>
-                }
+                    </div>
+                    {(isLoggedIn) ?
+                        [<div >
+                            <h1>{`Submit a Report for Train ${lineName}`}</h1>
+                            <form onSubmit={submitMessage}>
+                                <label >Message: </label>
+                                <input id='textbox' value={`${message}`} onChange={(e) => { setMessage(e.target.value); }} type="text" />
+                                <button className={'submit-btn'}>Submit Report</button>
+                            </form>
+                        </div>]
+                        : <div></div>
+                    }
+                </div>
             </div>
-            {totalMessages}
+            {allMessages}
         </div>
     );
 };
