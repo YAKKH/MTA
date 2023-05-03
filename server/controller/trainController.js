@@ -7,8 +7,8 @@ const trainController = {};
 trainController.findTrain = async (req, res, next) => {
   try {
     const { train } = req.params;
-    const trainUnique = await prisma.train.findUnique({
-      where: { train }
+    const trainUnique = await prisma.train.findFirst({
+      where: { name: train }
     });
     res.locals.train = trainUnique;
     return next();

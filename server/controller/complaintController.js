@@ -40,6 +40,7 @@ complaintController.createComplaint = async (req, res, next) => {
         }
       }
     });
+    return next();
   } catch (err) {
     console.log(err);
   }

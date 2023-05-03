@@ -9,20 +9,24 @@ userController.login = async (req, res, next) => {
     const { username, password } = req.body;
     const user = await prisma.user.findUnique({
       where: {
-        username,
-        password
+        username
       }
     });
     if (user === null) {
       res.locals.user = { isLoggedIn: false };
       return next();
     }
-    res.locals.user = {
-      isLoggedIn: true,
-      username: user.username,
-      _id: user.id
-    };
-    return next();
+    if (user.password !== password) {
+      res.locals.user = { isLoggedIn: false };
+      return next();
+    } else {
+      res.locals.user = {
+        isLoggedIn: true,
+        username: user.username,
+        _id: user.id
+      };
+      return next();
+    }
   } catch (err) {
     console.log(err);
   }
