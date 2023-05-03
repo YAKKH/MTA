@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import {Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { login } from '../features/account/accountSlice';
+
 
 export default function Signup() {
   const [currUser, setUser] = useState('');
@@ -20,8 +22,10 @@ export default function Signup() {
       .then(res => res.json())
       .then(data => {
         if (data.isLoggedIn) {
-          //fix dispatch u r passing in the wrong object
-          dispatch({ username: data.username, _id: data._id });
+          dispatch(login({
+            username: data.username,
+            _id: data._id
+          }));
         } else {
           alert('you fail');
         }

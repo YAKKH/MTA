@@ -21,8 +21,10 @@ export default function Login () {
       .then(res => res.json())
       .then(data => {
         if (data.isLoggedIn) {
-          //fix dispatch u r passing in the wrong object
-          dispatch({ username: data.username, _id: data._id });
+          dispatch(login({
+            username: data.username,
+            _id: data._id
+          }));
         } else {
           alert('you fail');
         }
