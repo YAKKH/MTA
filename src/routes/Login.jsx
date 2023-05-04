@@ -33,6 +33,20 @@ export default function Login () {
         }
       });
   }
+
+  /* Handle Auth Login (*/
+  function handleAuth(e){
+    e.preventDefault();
+    dispatch(login({
+      username: "Kenny",
+      _id: 99
+    }));
+    navigate('/');
+  }
+
+
+
+
   return (
     <div className='login'>
     {/* <form action="">
@@ -44,8 +58,9 @@ export default function Login () {
     <input placeholder="Enter your username" value={currUser} onChange={e => setUser(e.target.value)}/>
     <input placeholder="Enter your password" value={currPassword} onChange={e => setPassword(e.target.value)}/>
     <button onClick={sendLogin}>Login</button>
-    
       <Link to="/">Login to HOME PAGE</Link>
+      {/* OAuth Login  */}
+    <button onClick={(e)=>handleAuth(e)}>LOG IN WITH GITHUB</button>
     </div>
   );
 }
