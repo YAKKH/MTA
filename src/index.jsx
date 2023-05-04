@@ -7,6 +7,8 @@ import MainContainer from './routes/MainContainer';
 import Login from './routes/Login';
 import Signup from './routes/Signup';
 import Navbar from './components/Navbar';
+import Successful from './components/Successful';
+
 import './components/input.css';
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
             <Route index element={<MainContainer />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            {/* <Route path='/successful' element={<Successful />} /> */}
           </Route>
         </Routes>
       </BrowserRouter>
