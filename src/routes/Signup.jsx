@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../features/account/accountSlice';
 
 
-export default function Signup() {
+export default function Signup () {
   const [currUser, setUser] = useState('');
   const [currPassword, setPassword] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   function sendInfo () {
     fetch('/signup', {
       method: 'POST',
@@ -26,6 +27,7 @@ export default function Signup() {
             username: data.username,
             _id: data._id
           }));
+          navigate('/');
         } else {
           alert('you fail');
         }
@@ -36,7 +38,6 @@ export default function Signup() {
     <input placeholder="Enter username..." value={currUser} onChange={e => setUser(e.target.value)}/>
     <input placeholder="Enter password..." value={currPassword} onChange={e => setPassword(e.target.value)}/>
     <button onClick={sendInfo}>SUBMIT</button>
-      <Link to="/">Login to HOME PAGE</Link>
     </div>
   );
 }
