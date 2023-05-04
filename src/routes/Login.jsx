@@ -34,18 +34,6 @@ export default function Login() {
       });
   }
 
-  /* Handle Auth Login (*/
-  function handleAuth(e) {
-    e.preventDefault();
-    dispatch(login({
-      username: "Kenny",
-      _id: 99
-    }));
-    navigate('/');
-  }
-
-
-
 
   return (
     <div className='bodyContainer'>
@@ -61,8 +49,6 @@ export default function Login() {
         <label >Password: </label>
         <input placeholder="Enter your password" value={currPassword} onChange={e => setPassword(e.target.value)} />
         <button onClick={sendLogin}>Login</button>
-        {/* OAuth Login  */}
-        <button onClick={(e) => handleAuth(e)}>LOG IN WITH GITHUB</button>
         <button><Link to="/">Return to Home</Link></button>
 
       </div>
