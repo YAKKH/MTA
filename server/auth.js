@@ -31,12 +31,18 @@ passport.use(new GitHubStrategy({
   clientSecret: process.env.clientSecret,
   callbackURL: process.env.callbackURL
 },
-function (accessToken, refreshToken, profile, done) {
-  /* Profile -  is an object with all the information Github is willing to share with our application. */
-  // console.log(profile);
-  return done(null, profile);
-}
+  function (accessToken, refreshToken, profile, done) {
+    /* Profile -  is an object with all the information Github is willing to share with our application. */
+    // console.log(profile);
+
+    return done(null, profile);
+  }
 ));
+
+router.use("/", (req, res, next) => {
+  console.log("REQUEST USER:  ", req.user);
+  return next()
+})
 
 /*
   serializeUser - called once per login session.
@@ -57,6 +63,7 @@ router.get('/authcallback', passport.authenticate('github', {
   successRedirect: "/",
   failureRedirect: "/loginFailed"
 }));
+
 
 router.get('/auth', passport.authenticate('github'), (req, res, next) => {
   console.log("REQUEST USER: ", req.user.id);
