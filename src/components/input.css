@@ -55,6 +55,9 @@ body {
   margin: 0;
   padding: 0;
   background-color: #24252A;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+
 }
 
 .navBarCSS {
@@ -81,14 +84,19 @@ body {
 .mainContainerFlex {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 3%;
 }
 
 .header {
-  background-color: #2f373b;
+  background: linear-gradient(#464d55, #24252A);
   padding: 2%;
   color: #edf0f1;
   font-size: 20px;
   font-weight: bold;
+  border-radius: 8px;
+  border-width: 0;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
+  margin: 0.3%;
 }
 
 .centerLogo {
@@ -126,6 +134,7 @@ body {
   align-items: center;
   font-size: 8em;
   font-weight: bold;
+  font-family: sans-serif;
 }
 
 .login {
@@ -139,7 +148,7 @@ input {
 
 .submit-btn {
   color: rgb(53, 175, 53);
-  border: 1px solid #2f373b;
+  border: 1px solid #272c31;
   margin: 2vh;
   padding: 1vh;
   box-shadow: #2f373b 1px 1px;
@@ -208,4 +217,31 @@ a {
 .purple {
   background-color: #b933ad;
   color: white;
+}
+
+.message {
+  background: #272c31;
+  border-radius: 8px;
+  border-width: 0;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .1), 0 3px 6px rgba(0, 0, 0, .05);
+  box-sizing: border-box;
+  color: #edf0f1;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1;
+  margin: 1% 1%;
+  padding: 1%;
+}
+
+.message:hover {
+  box-shadow: rgba(0, 1, 0, .2) 0 2px 8px;
+  opacity: .85;
+}
+
+.message:active {
+  outline: 0;
+}
+
+.message:focus {
+  box-shadow: rgba(0, 0, 0, .5) 0 0 0 3px;
 }

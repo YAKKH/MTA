@@ -105,9 +105,9 @@ export default function MainContainer() {
             const totalMessages = [];
             for (const msg of combinedData) {
                 totalMessages.push(
-                    <div className='white' key={`${msg.message}`}>
-                        <p>Message: {msg.message}</p>
-                        <p>From: {msg.user.username}</p>
+                    <div className='message' key={`${msg.message}`}>
+                        <p className='label'>Message: {msg.message}</p>
+                        <p className='msgP'>From: {msg.user.username}</p>
                     </div>
                 );
             };
@@ -190,7 +190,11 @@ export default function MainContainer() {
                     }
                 </div>
             </div>
-            {allMessages}
+            {(allMessages.length != 0) ? [<div>
+                <h1 className='header'>{`Reports for ${lineName} Train`}</h1>
+                {allMessages}
+            </div>] : null}
+
         </div>
     );
 };
