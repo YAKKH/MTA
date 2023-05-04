@@ -4,7 +4,7 @@ const express = require('express');
 const userController = require('./controller/userController');
 const trainController = require('./controller/trainController');
 const complaintController = require('./controller/complaintController');
-// const path = require('path');
+const path = require('path');
 const cors = require('cors');
 const app = express();
 app.use(cors());
@@ -13,6 +13,8 @@ const authRouter = require('./auth');
 
 app.use(express.json());
 app.use(authRouter);
+
+app.use('/', express.static(path.join(__dirname, '../src/components/')));
 
 app.post('/login', userController.login, (req, res) => {
 	return res.status(200).json(res.locals.user);

@@ -3,12 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../features/account/accountSlice';
 
-export default function Login () {
+export default function Login() {
   const navigate = useNavigate()
   const [currUser, setUser] = useState('');
   const [currPassword, setPassword] = useState('');
   const dispatch = useDispatch();
-  function sendLogin () {
+  function sendLogin() {
     fetch('/login', {
       method: 'POST',
       headers: {
@@ -35,7 +35,7 @@ export default function Login () {
   }
 
   /* Handle Auth Login (*/
-  function handleAuth(e){
+  function handleAuth(e) {
     e.preventDefault();
     dispatch(login({
       username: "Kenny",
@@ -48,19 +48,24 @@ export default function Login () {
 
 
   return (
-    <div className='login'>
-    {/* <form action="">
+    <div className='bodyContainer'>
+      <div className='form'>
+        {/* <form action="">
       <label htmlFor="">Enter Username: </label>
       <input type="text" name="" id="" />
       <label htmlFor="">Enter Password</label>
       <input type="password" name="" id="" />
     </form> */}
-    <input placeholder="Enter your username" value={currUser} onChange={e => setUser(e.target.value)}/>
-    <input placeholder="Enter your password" value={currPassword} onChange={e => setPassword(e.target.value)}/>
-    <button onClick={sendLogin}>Login</button>
-      <Link to="/">Login to HOME PAGE</Link>
-      {/* OAuth Login  */}
-    <button onClick={(e)=>handleAuth(e)}>LOG IN WITH GITHUB</button>
+        <label >Username: </label>
+        <input placeholder="Enter your username" value={currUser} onChange={e => setUser(e.target.value)} />
+        <label >Password: </label>
+        <input placeholder="Enter your password" value={currPassword} onChange={e => setPassword(e.target.value)} />
+        <button onClick={sendLogin}>Login</button>
+        {/* OAuth Login  */}
+        <button onClick={(e) => handleAuth(e)}>LOG IN WITH GITHUB</button>
+        <button><Link to="/">Return to Home</Link></button>
+
+      </div>
     </div>
   );
 }
