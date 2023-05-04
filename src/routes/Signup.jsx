@@ -40,7 +40,7 @@ export default function Signup() {
         <input placeholder="Enter username..." value={currUser} onChange={e => setUser(e.target.value)} />
         <label >Password: </label>
         <input placeholder="Enter password..." value={currPassword} onChange={e => setPassword(e.target.value)} />
-        <button onClick={sendInfo}>SUBMIT</button>
+        <button onClick={sendInfo}>Signup</button>
         <button><Link to="/">Return to Home</Link></button>
 
       </div>

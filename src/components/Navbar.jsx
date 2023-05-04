@@ -13,6 +13,7 @@ export default function Navbar() {
   };
   return (
     <div>
+      <img id='logo' src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/MTA_NYC_logo.svg/1862px-MTA_NYC_logo.svg.png' />
       <ul className='navBarCSS'>
         <li className="list-options">
           <Link className="home" to="/">Home</Link>

@@ -280,3 +280,16 @@ a {
   border: 1px solid #0088a9;
   box-sizing: border-box;
 }
+
+#logo {
+  margin-top: 0;
+  padding-top: 0;
+  margin-left: 5%;
+  position: absolute;
+  width: 8%;
+}
+
+#root {
+  padding: 0;
+  margin: 0;
+}

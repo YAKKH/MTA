@@ -70,7 +70,7 @@ export default function MainContainer() {
         console.log('This is the line name we are getting msgs for', lineName);
         e.preventDefault();
         try {
-            setAllMessages([])
+            setAllMessages([]);
             let combinedData = [];
             // get complaints from backend
             const BEresponse = await fetch(`/complaints/${lineName}`, {
@@ -78,7 +78,7 @@ export default function MainContainer() {
             });
             const data = await BEresponse.json();
             combinedData = [...data];
-            console.log("Combined Data: ", combinedData)
+            console.log("Combined Data: ", combinedData);
             // get and filter service messages from MTA API
             const APIresponse = await fetch('https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/camsys%2Fsubway-alerts.json',
                 {
@@ -102,7 +102,7 @@ export default function MainContainer() {
                     }
                 }
             }
-            const totalMessages = [];
+            const totalMessages = [<h1 className='header'>{`Reports for ${lineName} Train`}</h1>];
             for (const msg of combinedData) {
                 totalMessages.push(
                     <div className='message' key={`${msg.message}`}>
@@ -190,11 +190,7 @@ export default function MainContainer() {
                     }
                 </div>
             </div>
-            {(allMessages.length != 0) ? [<div>
-                <h1 className='header'>{`Reports for ${lineName} Train`}</h1>
-                {allMessages}
-            </div>] : null}
-
+            {allMessages}
         </div>
     );
 };
