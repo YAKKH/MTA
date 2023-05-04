@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../features/account/accountSlice';
 
-export default function Login() {
-  const navigate = useNavigate()
+
+export default function Signup() {
   const [currUser, setUser] = useState('');
   const [currPassword, setPassword] = useState('');
   const dispatch = useDispatch();
-  function sendLogin() {
-    fetch('/login', {
+  const navigate = useNavigate();
+  function sendInfo() {
+    fetch('/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -23,7 +24,6 @@ export default function Login() {
       .then(data => {
         if (data.isLoggedIn) {
           dispatch(login({
-
             username: data.username,
             _id: data._id
           }));
@@ -33,22 +33,14 @@ export default function Login() {
         }
       });
   }
-
-
   return (
     <div className='bodyContainer'>
       <div className='form'>
-        {/* <form action="">
-      <label htmlFor="">Enter Username: </label>
-      <input type="text" name="" id="" />
-      <label htmlFor="">Enter Password</label>
-      <input type="password" name="" id="" />
-    </form> */}
         <label >Username: </label>
-        <input placeholder="Enter your username" value={currUser} onChange={e => setUser(e.target.value)} />
+        <input placeholder="Enter username..." value={currUser} onChange={e => setUser(e.target.value)} />
         <label >Password: </label>
-        <input placeholder="Enter your password" value={currPassword} onChange={e => setPassword(e.target.value)} />
-        <button onClick={sendLogin}>Login</button>
+        <input placeholder="Enter password..." value={currPassword} onChange={e => setPassword(e.target.value)} />
+        <button onClick={sendInfo}>Signup</button>
         <button><Link to="/">Return to Home</Link></button>
 
       </div>

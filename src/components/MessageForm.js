@@ -9,9 +9,8 @@ export default function MessageForm() {
 
     const fetchMessages = async function () {
         try {
-            const response = await fetch("http://localhost:3000", {
+            const response = await fetch("/", {
                 method: "GET",
-                cors: 'no-cors'
             }).then(data => data.json())
                 .then(data => setAllMessages(data))
         } catch (err) {
@@ -19,11 +18,10 @@ export default function MessageForm() {
         }
     }
 
+
     useState(() => {
         fetchMessages()
     })
-
-
 
     const handleSubmit = async function (e) {
         e.preventDefault()
