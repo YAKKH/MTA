@@ -4,7 +4,7 @@ const express = require('express');
 const userController = require('./controller/userController');
 const trainController = require('./controller/trainController');
 const complaintController = require('./controller/complaintController');
-// const path = require('path');
+const path = require('path');
 const cors = require('cors');
 const app = express();
 app.use(cors());
@@ -13,6 +13,10 @@ const authRouter = require('./auth');
 
 app.use(express.json());
 app.use(authRouter);
+
+app.use('/public', express.static(path.join(__dirname, '../public')));
+
+app.use('/', express.static(path.resolve(__dirname, '../')));
 
 app.post('/login', userController.login, (req, res) => {
 	return res.status(200).json(res.locals.user);
@@ -33,3 +37,5 @@ app.post('/complaints/:train', trainController.findTrain, complaintController.cr
 app.listen(PORT, () => {
 	console.log(`listening on port: ${PORT}`);
 });
+
+module.exports = app;

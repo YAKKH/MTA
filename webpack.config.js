@@ -12,12 +12,11 @@ const isProduction = process.env.NODE_ENV === 'production';
 const stylesHandler = isProduction
 	? MiniCssExtractPlugin.loader
 	: 'style-loader';
-
+//hi ho yohan
 const config = {
 	entry: './src/index.jsx',
 	output: {
 		path: path.resolve(__dirname, 'public'),
-		publicPath: "/",
 	},
 	devServer: {
 		open: true,
