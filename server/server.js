@@ -14,7 +14,9 @@ const authRouter = require('./auth');
 app.use(express.json());
 app.use(authRouter);
 
-app.use('/', express.static(path.join(__dirname, '../src/components/')));
+app.use('/public', express.static(path.join(__dirname, '../public')));
+
+app.use('/', express.static(path.resolve(__dirname, '../')));
 
 app.post('/login', userController.login, (req, res) => {
 	return res.status(200).json(res.locals.user);
@@ -35,3 +37,5 @@ app.post('/complaints/:train', trainController.findTrain, complaintController.cr
 app.listen(PORT, () => {
 	console.log(`listening on port: ${PORT}`);
 });
+
+module.exports = app;
